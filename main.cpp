@@ -1,8 +1,9 @@
-#include <iostream>
+#include "Fibonneo.h"
 
 using namespace std;
 
 int main() {
-    cout << "Hello, World!" << endl;
+    Fibonneo f();
+    cout<<"Fibonneo object created"<<endl;
     return 0;
 }
