@@ -6,6 +6,8 @@
 #define FIBONNEO_CONFIRMATION_H
 
 
+#include <string>
+
 class Confirmation {
 public:
     Confirmation() {
@@ -15,7 +17,6 @@ public:
     Confirmation(char *ip, bool correct) : ip(ip), correct(correct) { }
 
     virtual ~Confirmation() {
-        delete [] ip;
     }
 
     const char *getIp() const {
@@ -30,7 +31,7 @@ public:
         Confirmation::correct = correct;
     }
 
-    char* buildString();
+    std::string buildString();
 
 private:
     char* ip;

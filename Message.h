@@ -18,7 +18,6 @@ public:
     }
 
     virtual ~Message() {
-        delete [] hash;
     }
 
     int getCounter() const {
@@ -49,7 +48,7 @@ public:
         return hash;
     }
 
-    char* buildString();
+    std::string buildString();
 
 private:
 
