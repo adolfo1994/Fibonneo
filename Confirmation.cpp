@@ -6,11 +6,6 @@
 #include "Confirmation.h"
 
 
-inline char boolToString(bool boolean) {
-    return boolean? '1' : '0';
-}
-
-
 inline bool charToBool(const char letter) {
    return letter=='1'? true : false;
 }

@@ -33,6 +33,7 @@ public:
     }
 
     std::string buildString();
+
     static Confirmation buildConfirmation(std::string buffer);
 
 private:

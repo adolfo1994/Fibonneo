@@ -49,6 +49,7 @@ public:
     }
 
     std::string buildString();
+    
     static Message buildMessage(std::string buffer);
 
 private:
