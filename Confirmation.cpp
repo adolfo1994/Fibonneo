@@ -9,7 +9,7 @@ inline char boolToString(bool boolean){
     return boolean? '1' : '0';
 }
 
-std::string Confirmation::buildString() {
+std::string Confirmation::buildString() const {
     char* result_message = new char[17];
     char confirmation_flag = boolToString(correct);
     strcpy(result_message, ip);

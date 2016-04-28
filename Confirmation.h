@@ -31,7 +31,7 @@ public:
         Confirmation::correct = correct;
     }
 
-    std::string buildString();
+    std::string buildString() const;
 
 private:
     char* ip;
