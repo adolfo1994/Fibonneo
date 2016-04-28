@@ -12,6 +12,7 @@ class Confirmation {
 public:
     Confirmation() {
         ip = new char[15];
+        correct = false;
     }
 
     Confirmation(char *ip, bool correct) : ip(ip), correct(correct) { }
@@ -32,9 +33,10 @@ public:
     }
 
     std::string buildString();
+    static Confirmation buildConfirmation(std::string buffer);
 
 private:
-    char* ip;
+    const char* ip;
     bool correct;
 
 };

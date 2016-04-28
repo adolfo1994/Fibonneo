@@ -1,19 +1,34 @@
 //
 // Created by jose on 10/04/16.
 //
-
+#include <sstream>
 #include <cstring>
 #include "Confirmation.h"
 
-inline char boolToString(bool boolean){
+
+inline char boolToString(bool boolean) {
     return boolean? '1' : '0';
 }
 
+
+inline bool charToBool(const char letter) {
+   return letter=='1'? true : false;
+}
+
+
 std::string Confirmation::buildString() {
-    char* result_message = new char[17];
-    char confirmation_flag = boolToString(correct);
-    strcpy(result_message, ip);
-    strcat(result_message, &confirmation_flag);
-    result_message[16] = '\0';
-    return result_message;
+    std::stringstream stream;
+    stream << ip;
+    stream << correct;
+    return stream.str();
+}
+
+
+Confirmation Confirmation::buildConfirmation(std::string buffer) {
+    Confirmation result;
+    result.ip = buffer.substr(0, 15).c_str();
+    result.correct = charToBool(buffer.back());
+
+    return result;
+
 }
