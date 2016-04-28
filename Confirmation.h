@@ -32,7 +32,7 @@ public:
         Confirmation::correct = correct;
     }
 
-    std::string buildString();
+    std::string buildString() const;
 
     static Confirmation buildConfirmation(std::string buffer);
 

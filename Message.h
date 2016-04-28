@@ -5,6 +5,8 @@
 #ifndef FIBONNEO_MESSAGE_H
 #define FIBONNEO_MESSAGE_H
 
+#include <string>
+
 
 class Message {
 
