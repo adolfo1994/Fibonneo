@@ -28,12 +28,14 @@ TcpServer::TcpServer(uint16_t port) {
 
 
 void TcpServer::accept_connection() {
-    client_fd = accept(socket_fd, NULL, NULL);
-    if (client_fd < 0) {
-        perror("accept failed");
-        close(socket_fd);
-        exit(EXIT_FAILURE);
-    }
+    std::thread([this]() {
+        this->client_fd = accept(socket_fd, NULL, NULL);
+        if (this->client_fd < 0) {
+            perror("accept failed");
+            close(socket_fd);
+            exit(EXIT_FAILURE);
+        }
+    }).detach();
 }
 
 

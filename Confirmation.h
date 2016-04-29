@@ -11,16 +11,15 @@
 class Confirmation {
 public:
     Confirmation() {
-        ip = new char[15];
         correct = false;
     }
 
-    Confirmation(char *ip, bool correct) : ip(ip), correct(correct) { }
+    Confirmation(std::string ip, bool correct) : ip(ip), correct(correct) { }
 
     virtual ~Confirmation() {
     }
 
-    const char *getIp() const {
+    std::string getIp() const {
         return ip;
     }
 
@@ -39,7 +38,7 @@ public:
     static const std::size_t message_size;
 
 private:
-    const char* ip;
+    std::string ip;
     bool correct;
 
 };
