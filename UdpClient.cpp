@@ -27,13 +27,14 @@ void UdpClient::connect_socket() {
 }
 
 void UdpClient::send_message(Message msg) {
-    this->start_time = std::chrono::system_clock::now();
     std::string message = msg.buildString();
+    this->start_time = std::chrono::system_clock::now();
     if (sendto(this->sock, message.c_str(), message.size(), 0,
                (struct sockaddr *) &this->addr, sizeof(this->addr)) != msg.buildString().size()) {
         perror("Mismatch in number of bytes sent");
         exit(EXIT_FAILURE);
     }
+    this->queue_end_time = std::chrono::system_clock::now();
 }
 
 Confirmation UdpClient::get_confirmation() {
@@ -50,12 +51,9 @@ Confirmation UdpClient::get_confirmation() {
 }
 
 std::chrono::duration<double> UdpClient::get_duration() {
-    return this->start_time - this->end_time;
+    return end_time - start_time;
 }
 
-
-
-
-
-
-
+std::chrono::duration<double> UdpClient::get_queuing_duration() {
+    return queue_end_time - start_time;
+}

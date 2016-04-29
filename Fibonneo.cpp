@@ -15,12 +15,17 @@ void Fibonneo::start(int counter, int f0, int f1) {
 void Fibonneo::receive_send() {
     Message receive = server->get_message();
     server->send_confirmation(Confirmation(ip, 1));
+    this->start_time = std::chrono::system_clock::now();
     int next_note = (receive.getNote_1() + receive.getNote_2()) % 10000;
     output << next_note << std::endl;
+    this->end_time = std::chrono::system_clock::now();
     if (receive.getCounter()) {
         Message send(receive.getCounter() - 1, receive.getNote_2(), next_note);
         client->send_message(send);
         client->get_confirmation();
+        double total_time = client->get_duration().count(), queuing_time = client->get_queuing_duration().count();
+        timing << get_nodal_processing().count() << ',' << queuing_time << ',' <<
+                (total_time - queuing_time) / 2 << std::endl;
     }
 }
 
@@ -41,4 +46,8 @@ void Fibonneo::set_ip() {
         }
     }
     freeifaddrs(ifaddr);
+}
+
+std::chrono::duration<double> Fibonneo::get_nodal_processing() {
+    return end_time - start_time;
 }

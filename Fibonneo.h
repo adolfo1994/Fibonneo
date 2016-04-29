@@ -22,6 +22,7 @@ public:
     Fibonneo(std::ostream &output, std::ostream &timing, Server *server, Client *client) :
             output(output), timing(timing), server(server), client(client) {
         set_ip();
+        timing << "Nodal Processing,Queueing,Transmission+Propagation" << std::endl;
     }
 
     void start(int counter, int f0, int f1);
@@ -35,6 +36,8 @@ private:
     Server *server;
     Client *client;
     std::string ip;
+    std::chrono::time_point<Clock> start_time, end_time;
+
     void set_ip();
 };
 

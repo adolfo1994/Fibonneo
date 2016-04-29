@@ -51,7 +51,7 @@ int main() {
         client = new UdpClient(input, port);
     client->connect_socket();
 
-    Fibonneo fibonneo(cerr, cerr, server, client);
+    Fibonneo fibonneo(cerr, cout, server, client);
 
     cerr << "Is start? (Y/n): ";
     cin >> input;

@@ -23,8 +23,7 @@ private:
     uint16_t server_port;
     struct sockaddr_in addr;
     int sock;
-    std::chrono::time_point<Clock> start_time;
-    std::chrono::time_point<Clock> end_time;
+    std::chrono::time_point<Clock> start_time, end_time, queue_end_time;
 public:
 
     UdpClient(std::string server_ip, uint16_t server_port) : server_ip(server_ip), server_port(server_port) {
@@ -38,7 +37,7 @@ public:
 
     virtual std::chrono::duration<double> get_duration() override;
 
-
+    virtual std::chrono::duration<double> get_queuing_duration() override;
 };
 
 

@@ -16,6 +16,7 @@ public:
     virtual void send_message(Message msg) = 0;
     virtual Confirmation get_confirmation() = 0;
     virtual std::chrono::duration<double> get_duration() = 0;
+    virtual std::chrono::duration<double> get_queuing_duration() = 0;
 };
 
 

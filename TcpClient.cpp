@@ -15,12 +15,14 @@ void TcpClient::connect_socket() {
 }
 
 void TcpClient::send_message(Message msg) {
-    this->start_time = std::chrono::system_clock::now();
     std::string message = msg.buildString();
+    this->start_time = std::chrono::system_clock::now();
     if (send(sock, message.c_str(), message.size(), 0) < 0) {
+        this->queue_end_time = std::chrono::system_clock::now();
         perror("Send failed : ");
         return;
     }
+    this->queue_end_time = std::chrono::system_clock::now();
 }
 
 Confirmation TcpClient::get_confirmation() {
@@ -39,5 +41,9 @@ Confirmation TcpClient::get_confirmation() {
 }
 
 std::chrono::duration<double> TcpClient::get_duration() {
-    return this->start_time - this->end_time;
+    return end_time - start_time;
+}
+
+std::chrono::duration<double> TcpClient::get_queuing_duration() {
+    return queue_end_time - start_time;
 }
