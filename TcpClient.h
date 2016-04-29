@@ -6,26 +6,28 @@
 #define FIBONNEO_TCPCLIENT_H
 
 
-#include "Client.h"
+#include <iostream>
 #include <chrono>
+
+#include <netinet/in.h>
+#include <cstring>
+#include <arpa/inet.h>
+
+#include "Client.h"
 
 using Clock = std::chrono::high_resolution_clock;
 
-class TCPClient: public Client{
+class TcpClient: public Client{
 private:
     std::string server_ip;
-    std::string server_port;
+    uint16_t server_port;
     struct sockaddr_in addr;
     int sock;
     std::chrono::time_point<Clock> start_time;
     std::chrono::time_point<Clock> end_time;
 
 public:
-    TCPClient() {
-        std::cout<<"Please input the server's IP: ";
-        std::cin>>server_ip;
-        std::cout<<"Please input the server's port: ";
-        std::cin>>server_port;
+    TcpClient(std::string server_ip, uint16_t server_port) : server_ip(server_ip), server_port(server_port) {
     }
 
     virtual void connect_socket() override;

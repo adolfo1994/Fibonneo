@@ -36,6 +36,8 @@ public:
 
     static Confirmation buildFromBuffer(std::string buffer);
 
+    static const std::size_t message_size;
+
 private:
     const char* ip;
     bool correct;
