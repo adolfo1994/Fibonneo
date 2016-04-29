@@ -12,11 +12,9 @@ class Message {
 
 public:
 
-    Message(int counter, int note_1, int note_2, char *hash) : counter(counter), note_1(note_1), note_2(note_2),
-                                                               hash(hash) { }
+    Message(int counter, int note_1, int note_2) : counter(counter), note_1(note_1), note_2(note_2) { }
 
     Message() {
-        hash = new char [32];
     }
 
     virtual ~Message() {
@@ -46,20 +44,22 @@ public:
         Message::note_2 = note_2;
     }
 
-    const char *getHash() const {
+    std::size_t getHash() const {
         return hash;
     }
 
     std::string buildString();
     
-    static Message buildMessage(std::string buffer);
+    static Message buildFromBuffer(std::string buffer);
+
+    static const std::size_t message_size;
 
 private:
 
     int counter;
     int note_1;
     int note_2;
-    const char* hash;
+    std::size_t hash;
 
 };
 
