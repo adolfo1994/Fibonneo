@@ -38,9 +38,9 @@ void TcpServer::accept_connection() {
 
 
 Message TcpServer::get_message() {
-    char buffer[44];
-    read(client_fd, buffer, 44);
-    return Message(); // TODO fix according to method
+    std::string buffer(Message::message_size, 0);
+    read(client_fd, &buffer[0], buffer.size());
+    return Message::buildFromBuffer(buffer);
 }
 
 
