@@ -15,6 +15,11 @@ UdpServer::UdpServer(uint16_t port) {
     my_addr.sin_port = htons(port);
 
     addr_len = sizeof remote_addr;
+
+    if (bind(socket_fd, (sockaddr *)&my_addr, sizeof my_addr) < 0) {
+        perror("bind failed");
+        exit(EXIT_FAILURE);
+    }
 }
 
 
