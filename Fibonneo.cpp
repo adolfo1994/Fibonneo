@@ -24,8 +24,8 @@ void Fibonneo::receive_send() {
         client->send_message(send);
         client->get_confirmation();
         double total_time = client->get_duration().count(), queuing_time = client->get_queuing_duration().count();
-        timing << get_nodal_processing().count() << ',' << queuing_time << ',' <<
-                (total_time - queuing_time) / 2 << std::endl;
+        timing << get_nodal_processing().count() * 1000 << ',' << queuing_time * 1000 << ',' <<
+                (total_time - queuing_time) * 500 << std::endl;
     }
 }
 
