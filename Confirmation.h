@@ -34,10 +34,7 @@ public:
 
     std::string buildString() const;
 
-    std::string getIpWithoutZeros();
-    static Confirmation buildConfirmation(std::string ip, bool confirmation);
-    static Confirmation buildConfirmationFromBuffer(std::string buffer);
-
+    static Confirmation buildFromBuffer(std::string buffer);
 
 private:
     const char* ip;

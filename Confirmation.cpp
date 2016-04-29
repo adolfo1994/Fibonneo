@@ -8,7 +8,7 @@
 #include <iostream>
 
 inline bool charToBool(const char letter) {
-   return letter=='1'? true : false;
+   return letter == '1';
 }
 
 std::string paddingIp (std::string ip) {
@@ -36,29 +36,15 @@ std::string takeOutLeftZeros(std::string ip) {
 
 std::string Confirmation::buildString() const {
     std::stringstream stream;
-    stream << takeOutLeftZeros(ip);
+    stream << paddingIp(ip);
     stream << correct;
     return stream.str();
 }
 
-
-Confirmation Confirmation::buildConfirmation(std::string ip, bool confirmation) {
-    Confirmation result;
-    result.ip = paddingIp(ip).c_str();
-    result.correct = confirmation;
-
-    return result;
-}
-
-Confirmation Confirmation::buildConfirmationFromBuffer(std::string buffer) {
+Confirmation Confirmation::buildFromBuffer(std::string buffer) {
     Confirmation result;
     result.correct = charToBool(buffer.back());
-    result.ip = paddingIp(buffer.substr(0, buffer.size()-1)).c_str();
+    result.ip = takeOutLeftZeros(buffer.substr(0, buffer.size()-1)).c_str();
 
     return result;
-}
-
-
-std::string Confirmation::getIpWithoutZeros() {
-    return takeOutLeftZeros(ip);
 }
