@@ -20,7 +20,7 @@ void UdpClient::connect_socket() {
         exit(EXIT_FAILURE);
     }
 
-    inet_pton(AF_INET, this->server_ip.c_str() ,&this->addr.sin_addr.s_addr);
+    inet_pton(AF_INET, this->server_ip.c_str(), &this->addr.sin_addr);
 
     this->addr.sin_port=htons(this->server_port);
 
