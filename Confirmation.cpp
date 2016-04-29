@@ -48,3 +48,6 @@ Confirmation Confirmation::buildFromBuffer(std::string buffer) {
 
     return result;
 }
+
+
+const std::size_t Confirmation::message_size = 16;
