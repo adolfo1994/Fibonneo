@@ -51,13 +51,15 @@ public:
     }
 
     std::string buildString();
+    
+    static Message buildMessage(std::string buffer);
 
 private:
 
     int counter;
     int note_1;
     int note_2;
-    char* hash;
+    const char* hash;
 
 };
 
